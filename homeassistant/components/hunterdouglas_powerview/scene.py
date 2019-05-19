@@ -41,7 +41,7 @@ async def async_setup_platform(hass, config, async_add_entities,
     hub_address = config.get(HUB_ADDRESS)
     websession = async_get_clientsession(hass)
 
-    pv_request = AioRequest(hub_address, loop=hass.loop, websession=websession)
+    pv_request = AioRequest(hub_address, websession=websession)
 
     _scenes = await Scenes(pv_request).get_resources()
     _rooms = await Rooms(pv_request).get_resources()

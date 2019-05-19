@@ -77,7 +77,7 @@ class YiCamera(Camera):
         """Retrieve the latest video file from the customized Yi FTP server."""
         from aioftp import Client, StatusCodeError
 
-        ftp = Client(loop=self.hass.loop)
+        ftp = Client()
         try:
             await ftp.connect(self.host)
             await ftp.login(self.user, self.passwd)
@@ -116,7 +116,7 @@ class YiCamera(Camera):
 
         url = await self._get_latest_video_url()
         if url and url != self._last_url:
-            ffmpeg = ImageFrame(self._manager.binary, loop=self.hass.loop)
+            ffmpeg = ImageFrame(self._manager.binary)
             self._last_image = await asyncio.shield(
                 ffmpeg.get_image(
                     url,
@@ -134,7 +134,7 @@ class YiCamera(Camera):
         if not self._is_on:
             return
 
-        stream = CameraMjpeg(self._manager.binary, loop=self.hass.loop)
+        stream = CameraMjpeg(self._manager.binary)
         await stream.open_camera(
             self._last_url, extra_cmd=self._extra_arguments)
 

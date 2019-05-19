@@ -78,7 +78,7 @@ async def async_setup(hass, config):
     scan_interval = conf[CONF_SCAN_INTERVAL]
     infer_arming_state = conf[CONF_INFER_ARMING_STATE]
 
-    client = Client(host=host, port=port, loop=hass.loop,
+    client = Client(host=host, port=port,
                     update_interval=scan_interval.total_seconds(),
                     infer_arming_state=infer_arming_state)
     hass.data[DATA_NESS] = client

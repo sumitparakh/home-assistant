@@ -117,7 +117,7 @@ async def async_setup(hass, config):
 
     tasks = [alert.async_update_ha_state() for alert in entities]
     if tasks:
-        await asyncio.wait(tasks, loop=hass.loop)
+        await asyncio.wait(tasks)
 
     return True
 

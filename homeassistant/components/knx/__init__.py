@@ -139,7 +139,7 @@ class KNXModule:
     def init_xknx(self):
         """Initialize of KNX object."""
         from xknx import XKNX
-        self.xknx = XKNX(config=self.config_file(), loop=self.hass.loop,
+        self.xknx = XKNX(config=self.config_file(),
                          rate_limit=self.config[DOMAIN][CONF_KNX_RATE_LIMIT])
 
     async def start(self):

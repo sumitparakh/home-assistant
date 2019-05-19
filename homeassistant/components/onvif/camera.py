@@ -304,11 +304,11 @@ class ONVIFHassCamera(Camera):
         _LOGGER.debug("Retrieving image from camera '%s'", self._name)
 
         ffmpeg = ImageFrame(
-            self.hass.data[DATA_FFMPEG].binary, loop=self.hass.loop)
+            self.hass.data[DATA_FFMPEG].binary)
 
         image = await asyncio.shield(ffmpeg.get_image(
             self._input, output_format=IMAGE_JPEG,
-            extra_cmd=self._ffmpeg_arguments), loop=self.hass.loop)
+            extra_cmd=self._ffmpeg_arguments))
         return image
 
     async def handle_async_mjpeg_stream(self, request):
